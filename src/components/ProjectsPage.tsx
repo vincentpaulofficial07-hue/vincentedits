@@ -9,7 +9,7 @@ interface ProjectsPageProps {
 
 export default function ProjectsPage({
   projects = [
-    { id: "1", title: "Cinemati Travel Film", videoId: "0bEaG99umD0" },
+    { id: "1", title: "Cinematic Travel Film", videoId: "0bEaG99umD0" },
     { id: "2", title: "Cinematic Travel Film", videoId: "flqL0IZOZvY" },
     { id: "3", title: "Cinematic Travel Film", videoId: "IuTDuvYr7f0" },
     { id: "4", title: "Documentary", videoId: "kNuwCiuDz4E" },
@@ -17,9 +17,8 @@ export default function ProjectsPage({
     { id: "6", title: "Fitness Vlog", videoId: "xlCBWlsKZXY" },
   ],
 }: ProjectsPageProps) {
-  const [visibleProjects, setVisibleProjects] = useState<Set<string>>(
-    new Set(),
-  );
+  const [visibleProjects, setVisibleProjects] = useState<Set<string>>(new Set());
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const projectRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function ProjectsPage({
             setVisibleProjects((prev) => new Set(prev).add(project.id));
           }
         },
-        { threshold: 0.2 },
+        { threshold: 0.2 }
       );
 
       observer.observe(element);
@@ -75,19 +74,18 @@ export default function ProjectsPage({
                 y: visibleProjects.has(project.id) ? 0 : 50,
               }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative aspect-video bg-[#111111] rounded-lg overflow-hidden border-2 border-gray-800 hover:border-red-600 transition-all duration-300"
+              className="group relative aspect-video bg-[#111111] rounded-lg overflow-hidden border-2 border-gray-800 hover:border-red-600 transition-all duration-300 cursor-pointer"
+              onClick={() => setSelectedVideo(project.videoId)}
             >
-              <div className="absolute inset-0 group-hover:glow-red-strong transition-all duration-300">
-                <iframe
-                  src={`https://www.youtube.com/embed/${project.videoId}`}
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ border: "none" }}
+              <div className="absolute inset-0">
+                <img
+                  src={`https://img.youtube.com/vi/${project.videoId}/hqdefault.jpg`}
+                  alt={project.title}
+                  className="w-full h-full object-cover"
                 />
               </div>
 
-              <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 p-6">
+              <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-4 p-6">
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   className="w-16 h-16 rounded-full bg-red-600 flex items-center justify-center glow-red-strong"
@@ -105,6 +103,27 @@ export default function ProjectsPage({
           ))}
         </div>
       </div>
+
+      {selectedVideo && (
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+          <div className="relative w-full max-w-4xl aspect-video">
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+              title="Project video"
+              className="w-full h-full rounded-2xl"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/60 rounded-full px-3 py-1 hover:bg-red-600 transition"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-900/5 to-transparent pointer-events-none" />
     </section>
