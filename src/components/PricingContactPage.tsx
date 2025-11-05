@@ -258,7 +258,7 @@ function ContactBox() {
           <input
             type="text"
             name="project_type"
-            placeholder="Project Type (e.g. Travel vlog, Short film)"
+            placeholder="Project Type (e.g. Travel vlog, fitness, Documentary)"
             className="w-full p-3 bg-black text-white border border-red-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
           />
           <input
