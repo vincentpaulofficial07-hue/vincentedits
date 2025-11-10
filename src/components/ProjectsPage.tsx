@@ -14,7 +14,7 @@ export default function ProjectsPage({
     { id: "3", title: "Cinematic Travel Film", videoId: "IuTDuvYr7f0" },
     { id: "4", title: "Documentary", videoId: "kNuwCiuDz4E" },
     { id: "5", title: "Day In My Life", videoId: "EFugsGU2llQ" },
-    { id: "6", title: "Fitness Vlog", videoId: "xlCBWlsKZXY" },
+    { id: "6", title: "MMA documentary", videoId: "RUeN5mitoAw" },
   ],
 }: ProjectsPageProps) {
   const [visibleProjects, setVisibleProjects] = useState<Set<string>>(new Set());
