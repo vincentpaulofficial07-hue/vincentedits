@@ -6,10 +6,10 @@ export default function PricingContactPage() {
   const pricingPlans = [
     {
       title: "IGNITE",
-      price: 89,
+      price: 179,
       features: [
         "For creators who need clean, engaging edits for mid-length videos — a perfect balance of speed and storytelling.",
-        "5–15 minutes of edited content",
+        "3–5 minutes of edited content",
         "Color correction & stabilization",
         "Basic text, transitions & pacing",
         "Royalty-free background music",
@@ -22,11 +22,11 @@ export default function PricingContactPage() {
     },
     {
       title: "ELEVATE",
-      price: 149,
+      price: 299,
       highlighted: true,
       features: [
         "For growing creators and small brands who want storytelling, cinematic polish, and multiple formats to boost reach.",
-        "20–30 minutes of edited content",
+        "8–12 minutes of edited content",
         "Advanced color grading & smooth pacing",
         "Custom transitions & animated titles",
         "Sound design & balanced audio",
@@ -38,10 +38,10 @@ export default function PricingContactPage() {
     },
     {
       title: "DOMINATE",
-      price: 239,
+      price: 489 ,
       features: [
         "For serious projects needing long-form storytelling, consistent visuals, and creative flexibility.",
-        "35+ minutes of edited content (custom scope)",
+        "15-25 minutes of edited content (custom scope)",
         "Full cinematic grading & effects",
         "Tailored storytelling structure",
         "Sound design & professional audio mixing",
